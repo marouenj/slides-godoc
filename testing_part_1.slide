@@ -48,7 +48,7 @@ Marouen Jilani
         }
     }
 
-- Data preparetion is mixed with test logic
+- Data preparation is mixed with test logic
 
 * Test data management issues / scope #4
 - Leveraging the scopes provided by Java for data re-usage doens't scale
