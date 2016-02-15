@@ -1,0 +1,94 @@
+Ideas about testing
+Marouen Jilani
+
+* Agenda
+
+- Test data management issues
+- Test data management solution
+- Test coverage
+- Spring Mock MVC
+- Minor ideas
+
+* Test data management issues / scope #1
+
+    public class DefaultTest {
+        private final static ID = "id";
+        ...
+    }
+
+- Data is mixed with other utilities (mocking objects, logger, ...)
+
+* Test data management issues / scope #2
+
+    public class BaseTest {
+        protected final static ID = ...
+
+        protected ... getTestData() {
+            ...
+        }
+    }
+
+    public class DefaultTest extends BaseTest {
+        ...
+    }
+
+- Inheretence is a bad candidate for data re-usage
+- It doesn't offer a fine-grained grouping of data
+- This will eventually lead to a big data container
+- Hard to make sense out of and collaborate on
+
+* Test data management issues / scope #3
+
+    public class BaseTest {
+
+        @Test
+        public void do() {
+            id = ...
+            ...
+        }
+    }
+
+- Data preparetion is mixed with test logic
+
+* Test data management issues / scope #4
+- Leveraging the scopes provided by Java for data re-usage doens't scale
+- As a developer, I need to rely on manual tracking to identify test data for a particular test
+
+* Test data management issues / test function per test case
+
+- AKA duplication of logic (data preparation logic and test logic)
+
+    public class DefaultTest {
+
+        @Test
+        public void shouldDefaultToFalseWhen...() {
+        }
+
+        @Test
+        public void shouldBeValid() {
+        }
+
+        @Test
+        public void shouldThrowAnExceptionWhen...() {
+        }
+
+        ...
+    }
+
+Lots of efforts to:
+- scroll down
+- size up coverage for a particular situation (what test cases have been covered, what's missing)
+- avoid duplication of tests
+
+* Test data management solution / data-driven testing
+- Really decouples data from test logic
+- Scalable (one container of data per test)
+- One entry per test case
+- Entry = input data + expected
+- Multiple test cases, one logic for data prepration, one logic for testing
+
+* Test coverage
+
+* Spring Mock MVC
+
+* Minor ideas
