@@ -59,7 +59,6 @@ Marouen Jilani
 - AKA duplication of logic (data preparation logic and test logic)
 
     public class DefaultTest {
-
         @Test
         public void shouldDefaultToFalseWhen...() {
         }
@@ -71,7 +70,6 @@ Marouen Jilani
         @Test
         public void shouldThrowAnExceptionWhen...() {
         }
-
         ...
     }
 
@@ -107,6 +105,23 @@ Lots of efforts to:
     public void shouldSumUp(Integer[] vals, Integer expected) {
         // logic for retrieving the data
         // test logic
+    }
+
+* Test data management solution / TestNG #3
+
+To integrate TestNG with JUnit in a Gradle project
+
+    dependencies {
+        testCompile 'org.testng:testng:6.9.10'
+    }
+
+    task testNG (type: Test) {
+        useTestNG {}
+        reports.html.destination = file("$buildDir/reports/testsng")
+    }
+
+    test {
+        dependsOn testNG
     }
 
 * Test coverage
