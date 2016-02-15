@@ -81,11 +81,33 @@ Lots of efforts to:
 - avoid duplication of tests
 
 * Test data management solution / data-driven testing
+
 - Really decouples data from test logic
 - Scalable (one container of data per test)
 - One entry per test case
 - Entry = input data + expected
 - Multiple test cases, one logic for data prepration, one logic for testing
+
+* Test data management solution / TestNG #1
+
+- Inspired by JUnit but adds more
+- Data-driven testing through @DataProvider annotation
+- Data container is a method annotated with @DataProvider
+- Test method sees test data through method arguments (injection = complete decoupling)
+
+* Test data management solution / TestNG #2
+
+    @DataProvider(name = "shouldSumUp")
+    public Object[][] shouldSumUp() {
+        // data definition
+        // logic for grouping the data
+    }
+
+    @Test(dataProvider = "shouldSumUp")
+    public void shouldSumUp(Integer[] vals, Integer expected) {
+        // logic for retrieving the data
+        // test logic
+    }
 
 * Test coverage
 
