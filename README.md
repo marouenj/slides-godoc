@@ -1,1 +1,1 @@
-[View testing_part_1.slide](http://go-talks.appspot.com/github.com/marouenj/slides/testing_part_1.slide)
+View [testing_part_1](http://go-talks.appspot.com/github.com/marouenj/slides-godoc/testing_part_1.slide)
