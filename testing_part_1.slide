@@ -181,6 +181,8 @@ With full coverage
 - If test fails at layer , all dependencies will fail for sure
 - The first failure encountered is the source
 
+* Test coverage #5
+
     #             r
     #             e
     #         c   q
