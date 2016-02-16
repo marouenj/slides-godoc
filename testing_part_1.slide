@@ -173,23 +173,34 @@ Less time to debug. Start right at the source
 
 * Test coverage #4
 
-                     r
-                     e
-                  c  q
-               s  o  u
-    ####       e  n  e
-       #    d  r  t  s
-       #### a  v  r  t
-          # l  i  o   
-          #### c  l  o
-             # e  l  b
-             #### e  j
-              x # r  e
-                #### c
-                 x # t
-                   ####
-                     x 
+With full coverage
+- leverage process of elimination
+
+- Test cases for the whole lifecycle
+- Take subset for each layer
+- If test fails at layer , all dependencies will fail for sure
+- The first failure encountered is the source
+
+    #          r
+    #          e
+    #       c  q
+    #    s  o  u
+    #    e  n  e
+    # d  r  t  s
+    # a  v  r  t
+    # l  i  o   
+    #### c  l  o
+     x # e  l  b
+     x #### e  j
+        x # r  e
+        x #### c
+           x # t
+           o ####
+               x 
+               o
 
 * Spring Mock MVC
 
 * Minor ideas
+
+- Mapping between classes in main and test packages
