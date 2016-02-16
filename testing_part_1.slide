@@ -125,7 +125,70 @@ To integrate TestNG with JUnit in a Gradle project
         dependsOn testNG
     }
 
-* Test coverage
+* Test coverage #1
+
+A common rule of thumb
+- don't test every line of code you write
+- only test the 'logic' part
+- Interceptor, Controller, Service, DAL, Util...
+
+Interfaces are logic-less code
+- Mapstruct-generated classes are not!
+- Is mapping working as expected?
+- What if someone changes the method signature or add/remove/edits @mapping annotations
+
+* Test coverage #2
+
+Data containers are logic-less code
+- Annotations for validation are not! Data containers should be tested in this case
+- Is validation working as expected?
+- What if someone add/remove/edit an annotation?
+
+Custom annotations should be tested
+- They're very fundamental (dependencies but not dependent)
+
+Less time to debug. Start right at the source
+- Controller is entrypoint for requests, not for debugging!
+
+* Test coverage #3
+
+    ###############
+    # Interceptor # green/red
+    ###############
+        |
+        V
+    ###############
+    # Controller  # green/red
+    ###############
+        |
+        V
+    ###############
+    # Service     # green/red
+    ###############
+        |
+        V
+    ###############
+    # DAL         # green/red
+    ###############
+
+* Test coverage #4
+
+                     r
+                     e
+                  c  q
+               s  o  u
+    ####       e  n  e
+       #    d  r  t  s
+       #### a  v  r  t
+          # l  i  o   
+          #### c  l  o
+             # e  l  b
+             #### e  j
+              x # r  e
+                #### c
+                 x # t
+                   ####
+                     x 
 
 * Spring Mock MVC
 
