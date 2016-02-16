@@ -199,7 +199,126 @@ With full coverage
                   x
                   o
 
-* Spring Mock MVC
+* Spring Mock MVC / Best practices #1
+
+    public class XControllerTest extends AbstractTestNGSpringContextTests {
+        @Autowired
+        private XController xController;
+
+        private MockMvc mockMvc;
+    }
+
+* Spring Mock MVC / Best practices #2
+
+    public class XControllerTest extends AbstractTestNGSpringContextTests {
+        @Autowired
+        private XController xController;
+
+        private MockMvc mockMvc;
+
+        private static class BeanProvider {
+        }
+    }
+
+* Spring Mock MVC / Best practices #3
+
+    @ContextConfiguration(classes = { XControllerTest.BeanProvider.class })
+    @ActiveProfiles("Xcontroller01")
+    public class XControllerTest extends AbstractTestNGSpringContextTests {
+        @Autowired
+        private XController xController;
+
+        private MockMvc mockMvc;
+
+        @Configuration
+        @Profile("Xcontroller01")
+        private static class BeanProvider {
+        }
+    }
+
+* Spring Mock MVC / Best practices #4
+
+    @ContextConfiguration(classes = { XControllerTest.BeanProvider.class })
+    @ActiveProfiles("Xcontroller01")
+    public class XControllerTest extends AbstractTestNGSpringContextTests {
+        @Autowired
+        private XController xController;
+
+        private MockMvc mockMvc;
+
+        @Configuration
+        @Profile("Xcontroller01")
+        private static class BeanProvider {
+            @Bean
+            public XController xController() {
+                return new XController();
+            }
+        }
+    }
+
+* Spring Mock MVC / Best practices #5
+
+    @ContextConfiguration(classes = { XControllerTest.BeanProvider.class })
+    @ActiveProfiles("Xcontroller01")
+    public class XControllerTest extends AbstractTestNGSpringContextTests {
+        @Autowired
+        private XController xController;
+
+        private MockMvc mockMvc;
+
+        @Configuration
+        @Profile("Xcontroller01")
+        private static class BeanProvider {
+            @Bean
+            public ... get...() {
+                return Mockito.mock(...);
+            }
+        }
+    }
+
+* Spring Mock MVC / Best practices #6
+
+    @ContextConfiguration(classes = { XControllerTest.BeanProvider.class })
+    @ActiveProfiles("Xcontroller01")
+    public class XControllerTest extends AbstractTestNGSpringContextTests {
+        @Autowired
+        private XController xController;
+
+        private MockMvc mockMvc;
+
+        @Configuration
+        @Profile("Xcontroller01")
+        private static class BeanProvider {
+            public final static ... BEAN = Mockito.mock(...);
+
+            @Bean
+            public ... get...() {
+                return BEAN;
+            }
+        }
+    }
+
+* Spring Mock MVC / Best practices #7
+
+    @ContextConfiguration(classes = { XControllerTest.BeanProvider.class })
+    @ActiveProfiles("Xcontroller01")
+    public class XControllerTest extends AbstractTestNGSpringContextTests {
+        @Autowired
+        private XController xController;
+
+        private MockMvc mockMvc;
+
+        @BeforeMethod
+        public void init() {
+            this.mockMvc = MockMvcBuilders.standaloneSetup(this.xController).build();
+        }
+
+        @Configuration
+        @Profile("Xcontroller01")
+        private static class BeanProvider {
+            ...
+        }
+    }
 
 * Minor ideas
 
