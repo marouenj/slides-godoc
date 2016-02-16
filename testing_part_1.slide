@@ -181,23 +181,23 @@ With full coverage
 - If test fails at layer , all dependencies will fail for sure
 - The first failure encountered is the source
 
-    #          r
-    #          e
-    #       c  q
-    #    s  o  u
-    #    e  n  e
-    # d  r  t  s
-    # a  v  r  t
-    # l  i  o   
-    #### c  l  o
-     x # e  l  b
-     x #### e  j
-        x # r  e
-        x #### c
-           x # t
-           o ####
-               x 
-               o
+    #             r
+    #             e
+    #         c   q
+    #     s   o   u
+    #     e   n   e
+    # d   r   t   s
+    # a   v   r   t
+    # l   i   o
+    ##### c   l   o
+      x # e   l   b
+      o ##### e   j
+          x # r   e
+          o ##### c
+              x # t
+              o ####
+                  x
+                  o
 
 * Spring Mock MVC
 
