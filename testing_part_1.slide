@@ -3,13 +3,12 @@ Marouen Jilani
 
 * Agenda
 
-- Test data management issues
-- Test data management solution
+- Test data management
 - Test coverage
 - Spring Mock MVC
 - Minor ideas
 
-* Test data management issues / scope #1
+* Test data management / Issues / scope #1
 
     public class DefaultTest {
         private ... ID = ...
@@ -18,7 +17,7 @@ Marouen Jilani
 
 - Data is mixed with other utilities (mocking objects, logger, ...)
 
-* Test data management issues / scope #2
+* Test data management / Issues / scope #2
 
     public class BaseTest {
         protected ... ID = ...
@@ -37,7 +36,7 @@ Marouen Jilani
 - This will eventually lead to a big data container
 - Hard to make sense out of and collaborate on
 
-* Test data management issues / scope #3
+* Test data management / Issues / scope #3
 
     public class BaseTest {
         @Test
@@ -49,11 +48,12 @@ Marouen Jilani
 
 - Data preparation is mixed with test logic
 
-* Test data management issues / scope #4
+* Test data management / Issues / scope #4
+
 - Leveraging the scopes (method, class, super class, external class) provided by Java for data re-usage doesn't scale
 - As a developer, I need to rely on manual tracking to identify test data for a particular test
 
-* Test data management issues / test function per test case #1
+* Test data management / Issues / test function per test case #1
 
 - AKA duplication of logic (data preparation logic and test logic)
 
@@ -72,14 +72,14 @@ Marouen Jilani
         ...
     }
 
-* Test data management issues / test function per test case #2
+* Test data management / Issues / test function per test case #2
 
 Lots of efforts to:
 - scroll down
 - size up coverage for a particular situation (what test cases have been covered, what's missing, ...)
 - avoid duplication of tests
 
-* Test data management solution / data-driven testing
+* Test data management / Solution / data-driven testing
 
 - Really decouples data from test logic
 - Scalable (one container of data per test)
@@ -87,14 +87,14 @@ Lots of efforts to:
 - Entry = input data + expected
 - Multiple test cases, one logic for data prepration, one logic for testing
 
-* Test data management solution / TestNG #1
+* Test data management / Solution / TestNG #1
 
 - Inspired by JUnit but adds more
 - Data-driven testing through @DataProvider annotation
 - Data container is a method annotated with @DataProvider
 - Test method sees test data through method arguments (injection = complete decoupling)
 
-* Test data management solution / TestNG #2
+* Test data management / Solution / TestNG #2
 
     @DataProvider(name = "shouldSumUp")
     public Object[][] shouldSumUp() {
@@ -108,7 +108,7 @@ Lots of efforts to:
         // test logic
     }
 
-* Test data management solution / TestNG #3
+* Test data management / Solution / TestNG #3
 
 To integrate TestNG with JUnit in a Gradle project
 
@@ -178,7 +178,7 @@ With full coverage
 
 - Test cases for the whole lifecycle
 - Take subset for each layer
-- If test fails at layer , all dependencies will fail for sure
+- If test fails at layer n , respective tests will fail at layer n+1...
 - The first failure encountered is the source
 
 * Test coverage #5
@@ -193,13 +193,13 @@ With full coverage
     # l   i   o
     ##### c   l   o
       x # e   l   b
-      o ##### e   j
+      x ##### e   j
           x # r   e
-          o ##### c
-              x # t
-              o ####
-                  x
+          x ##### c
+              o # t
+              x ####
                   o
+                  x
 
 * Spring Mock MVC / Best practices #1
 
