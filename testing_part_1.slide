@@ -152,27 +152,6 @@ Less time to debug. Start right at the source
 
 * Test coverage #3
 
-    ###############
-    # Interceptor # green/red
-    ###############
-        |
-        V
-    ###############
-    # Controller  # green/red
-    ###############
-        |
-        V
-    ###############
-    # Service     # green/red
-    ###############
-        |
-        V
-    ###############
-    # DAL         # green/red
-    ###############
-
-* Test coverage #4
-
 With full coverage
 - leverage process of elimination
 
@@ -181,7 +160,7 @@ With full coverage
 - If test fails at layer n , respective tests will fail at layer n+1...
 - The first failure encountered is the source
 
-* Test coverage #5
+* Test coverage #4
 
     #             r
     #             e
