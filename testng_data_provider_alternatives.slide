@@ -3,12 +3,12 @@ Marouen Jilani
 
 * Agenda
 
-- TestNG @DataProvider overview
+- TestNG @DataProvider
 - JUnit parameterized tests
 - JUnit @DataProvider plugin
 - JUnit @DataPoints
 
-* TestNG @DataProvider overview #1
+* TestNG @DataProvider / Overview #1
 
 Given this method
 
@@ -22,7 +22,7 @@ Given this method
         }
     }
 
-* TestNG @DataProvider overview #2
+* TestNG @DataProvider / Overview #2
 
 Test it with @DataProvider
 
@@ -47,7 +47,7 @@ Test it with @DataProvider
         }
         // code continues next slide
 
-* TestNG @DataProvider overview #3
+* TestNG @DataProvider / Overview #3
 
         @Test(dataProvider = "shouldSumUp")
         public void shouldSumUp(Integer[] vals, Integer expected) {
@@ -57,7 +57,13 @@ Test it with @DataProvider
         }
     }
 
-* JUnit parameterized testing
+* TestNG @DataProvider / Pros
+
+- Possibility to define multiple data providers in the same class
+- Any test can reference any data provider
+- Can easily scale if every test sees its own data provider in isolation
+
+* JUnit parameterized testing / Overview #1
 
 * JUnit @DataProvider plugin
 
