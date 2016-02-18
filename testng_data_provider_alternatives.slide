@@ -11,7 +11,7 @@ Marouen Jilani
 
 * Logic to test
 
-We'll use this for comparing testing frameworks
+We'll use this for comparing testing frameworks (except the last one)
 
     public class Util {
         public static int sum(Integer... vals) {
@@ -58,12 +58,12 @@ We'll use this for comparing testing frameworks
 * TestNG @DataProvider / Evaluation
 
 Pros
-- Possibility to define multiple data providers in the same class
-- Any test can reference any data provider
-- Can easily scale if every test sees its own data provider in isolation
+- possibility to define multiple data providers in the same class
+- any test can reference any data provider
+- can easily scale if every test sees its own data provider in isolation
 
 Cons
-- have to cope with (not a burden at all) JUnit and TestNG coexisting in the same project if the former is the status quo
+- have to cope with JUnit and TestNG coexisting in the same project if the former is the status quo
 
 * TestNG @DataProvider / Integration
 
@@ -130,24 +130,19 @@ To do
         }
     }
 
-* JUnit test runner 'Parameterized' / Pros
-
-Not really, with respect to TestNG @DataProvider
-
 * JUnit test runner 'Parameterized' / Cons
 
 Unnecessary boilerplate
-- Dependencies injected as class properties through a constructor
-- Unnecessary wrapper (iterator) around the data set. If the JUnit is iterating, why should the developer do the wrapping?
+- dependencies injected as class properties through a constructor
+- unnecessary wrapper (iterator) around the data set. If the JUnit is iterating, why should the developer do the wrapping?
 
 More important than above
-- Unable to specify multiple data containers in one class
-- The unit of a scenario can't be the method. It can only be a class
-- Significant increase in the number of test classes
+- unable to specify multiple data containers in one class
+- the unit of a scenario can't be the method. It can only be a class
+- significant increase in the number of test classes
 
 Even more important
-- parameterized testing is an implementation of JUnit test runners @RunWith(Parameterized.class)
-- only one runner can be used at a time (within the scope of a class)
+- only one test runner can be used at a time (within the scope of a class)
 - impossible to run parameterized testing with, say, Spring Mock MVC @RunWith(SpringJUnit4ClassRunner.class)
 
 * JUnit test runner 'Parameterized' / Integration
@@ -157,8 +152,8 @@ Status quo
 - Junit
 
 To do
-- Nothing
-- Parameterized support are supported out of the box with JUnit
+- nothing
+- parameterized test are supported out of the box with JUnit
 
 * JUnit test runner 'DataProviderRunner' / Overview #1
 
@@ -197,12 +192,11 @@ To do
 * JUnit test runner 'DataProviderRunner' / Evaluation
 
 Pros
-- completely outweighs parameterized testing
 - exactly similar to TestNG's @DataProvider
 
 Cons
-- use up the @RunWith annotation
 - unable to launch another test runner simultaneously (Spring Mock MVC with the @RunWith(SpringJUnit4ClassRunner.class))
+- this means not be able to leverage Mock MVC framework with data-driven testing
 
 * JUnit test runner 'DataProviderRunner' / Integration
 
@@ -212,6 +206,7 @@ Status quo
 
 To do
     testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.10.0'
+
 - further investigation on the stability of the project as the commitment of the creators of the tool towards supporting its adopters
 
 * JUnit test runner 'Theories' / Overview #1
