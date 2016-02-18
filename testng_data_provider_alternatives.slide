@@ -54,13 +54,70 @@ We'll use this for comparing testing frameworks
         }
     }
 
-* TestNG @DataProvider / Pros
+* TestNG @DataProvider / Evaluation
 
+Pros
 - Possibility to define multiple data providers in the same class
 - Any test can reference any data provider
 - Can easily scale if every test sees its own data provider in isolation
 
+Cons
+
 * JUnit parameterized testing / Overview #1
+
+@RunWith(value = Parameterized.class)
+public class UtilTest {
+
+    private Integer[] vals;
+    private Integer expected;
+
+    public UtilJUnitParameterizedTest(Integer[] vals, Integer expected) {
+        this.vals = vals;
+        this.expected = expected;
+    }
+    // code continues next slide
+
+* JUnit parameterized testing / Overview #2
+
+    @Parameters
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {
+                        new Integer[]{0, 0},
+                        0
+                },
+                {
+                        new Integer[]{1, 1},
+                        2
+                },
+                {
+                        new Integer[]{1, 2, 3, 4},
+                        10
+                },
+        });
+    }
+    // code continues next slide
+
+* JUnit parameterized testing / Overview #3
+
+    @Test
+    public void shouldSumUp() {
+        Assert.assertEquals(Util.sum(vals), (int) expected);
+    }
+}
+
+* JUnit parameterized testing / Evaluation
+
+** Pros
+** Cons
+Unnecessary boilerplate
+- Dependencies injected as class properties through a constructor
+- Unnecessary wrapper (iterator) around the data set. If the JUnit is iterating, why should the developer do the wrapping?
+
+More important than above
+- Unable to specify multiple data containers in one class
+- The unit of a scenario can't be the method. It can only be a class
+- Significant increase in the number of test classes
 
 * JUnit @DataProvider plugin
 
