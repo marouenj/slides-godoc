@@ -69,9 +69,10 @@ Cons
 
 Status quo
 - Gradle project
-- Junit
+- JUnit
 
 To do
+
     dependencies {
         testCompile 'org.testng:testng:6.9.10'
     }
@@ -149,7 +150,7 @@ Even more important
 
 Status quo
 - Gradle project
-- Junit
+- JUnit
 
 To do
 - nothing
@@ -158,7 +159,7 @@ To do
 * JUnit test runner 'DataProviderRunner' / Overview #1
 
     @RunWith(value = DataProviderRunner.class)
-    public class UtilJUnitDataProviderTest {
+    public class UtilTest {
 
         @DataProvider
         public static Object[][] shouldSumUp() {
@@ -205,9 +206,10 @@ Status quo
 - JUnit
 
 To do
+
     testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.10.0'
 
-- further investigation on the stability of the project as the commitment of the creators of the tool towards supporting its adopters
+- further investigation on the stability of the project and the commitment of the creators of the tool towards supporting its adopters
 
 * JUnit test runner 'Theories' / Overview #1
 
@@ -218,7 +220,7 @@ A niche within JUnit
 * JUnit test runner 'Theories' / Overview #2
 
     @RunWith(Theories.class)
-    public class UtilJUnitTheoriesTest {
+    public class UtilTest {
 
         @DataPoint
         public static int a = 10;
