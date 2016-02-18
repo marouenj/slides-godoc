@@ -1,0 +1,59 @@
+Alternatives to TestNG @DataProvider
+Marouen Jilani
+
+* Agenda
+
+- TestNG @DataProvider overview
+- JUnit parameterized testing
+- JUnit @DataProvider plugin
+- JUnit @DataPoints
+
+* TestNG @DataProvider overview #1
+
+Given this method
+
+    public static int sum(Integer... vals) {
+        int s = 0;
+        for (Integer val : vals) {
+            s += val;
+        }
+        return s;
+    }
+
+* TestNG @DataProvider overview #2
+
+Test it with @DataProvider
+
+    public class UtilTest {
+
+        @DataProvider(name = "shouldSumUp")
+        public Object[][] shouldSumUp() {
+            return new Object[][] {
+                    {
+                            new Integer[] {0, 0},
+                            0
+                    },
+                    {
+                            new Integer[] {1, 1},
+                            2
+                    },
+                    {
+                            new Integer[] {1, 2, 3, 4},
+                            10
+                    },
+            };
+        }
+
+        @Test(dataProvider = "shouldSumUp")
+        public void shouldSumUp(Integer[] vals, Integer expected) {
+            int s = sum(vals);
+
+            Assert.assertEquals(s, (int) expected);
+        }
+    }
+
+* JUnit parameterized testing
+
+* JUnit @DataProvider plugin
+
+* JUnit @DataPoints
