@@ -133,16 +133,16 @@ To do
 
 * JUnit test runner 'Parameterized' / Cons
 
-Unnecessary boilerplate
+Unnecessary boilerplate:
 - dependencies injected as class properties through a constructor
 - unnecessary wrapper (iterator) around the data set. If the JUnit is iterating, why should the developer do the wrapping?
 
-More important than above
+Most importantly:
 - unable to specify multiple data containers in one class
-- the unit of a scenario can't be the method. It can only be a class
+- the unit of a scenario can't be a method. It can only be a class
 - significant increase in the number of test classes
 
-Even more important
+Even more important:
 - only one test runner can be used at a time (within the scope of a class)
 - impossible to run parameterized testing with, say, Spring Mock MVC @RunWith(SpringJUnit4ClassRunner.class)
 
