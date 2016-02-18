@@ -6,7 +6,6 @@ Marouen Jilani
 - Test data management
 - Test coverage
 - Spring Mock MVC
-- Minor ideas
 
 * Test data management / Issues / scope #1
 
@@ -300,7 +299,3 @@ With full coverage
             ...
         }
     }
-
-* Minor ideas
-
-- Mapping between classes in main and test packages
