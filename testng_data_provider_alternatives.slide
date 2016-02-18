@@ -4,7 +4,7 @@ Marouen Jilani
 * Agenda
 
 - TestNG @DataProvider overview
-- JUnit parameterized testing
+- JUnit parameterized tests
 - JUnit @DataProvider plugin
 - JUnit @DataPoints
 
@@ -12,12 +12,14 @@ Marouen Jilani
 
 Given this method
 
-    public static int sum(Integer... vals) {
-        int s = 0;
-        for (Integer val : vals) {
-            s += val;
+    public class Util {
+        public static int sum(Integer... vals) {
+            int s = 0;
+            for (Integer val : vals) {
+                s += val;
+            }
+            return s;
         }
-        return s;
     }
 
 * TestNG @DataProvider overview #2
@@ -43,6 +45,9 @@ Test it with @DataProvider
                     },
             };
         }
+        // code continues next slide
+
+* TestNG @DataProvider overview #3
 
         @Test(dataProvider = "shouldSumUp")
         public void shouldSumUp(Integer[] vals, Integer expected) {
