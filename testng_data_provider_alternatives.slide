@@ -162,6 +162,48 @@ To do
 
 * JUnit @DataProvider plugin / Overview #1
 
+    @RunWith(value = DataProviderRunner.class)
+    public class UtilJUnitDataProviderTest {
+
+        @DataProvider
+        public static Object[][] shouldSumUp() {
+            return new Object[][]{
+                    {
+                            new Integer[]{0, 0},
+                            0
+                    },
+                    {
+                            new Integer[]{1, 1},
+                            2
+                    },
+                    {
+                            new Integer[]{1, 2, 3, 4},
+                            10
+                    },
+            };
+        }
+    ...
+
+* JUnit @DataProvider plugin / Overview #2
+
+    ...
+        @Test
+        @UseDataProvider("shouldSumUp")
+        public void shouldSumUp(Integer[] vals, Integer expected) {
+            Assert.assertEquals(Util.sum(vals), (int) expected);
+        }
+    }
+
+* JUnit @DataProvider plugin / Evaluation
+
+Pros
+- completely outweighs parameterized testing
+- exactly similar to TestNG's @DataProvider
+
+Cons
+- use up the @RunWith annotation
+- unable to launch another test runner simultaneously (Spring Mock MVC with the @RunWith(SpringJUnit4ClassRunner.class))
+
 * JUnit @DataProvider plugin / Integration
 
 Status quo
@@ -169,6 +211,7 @@ Status quo
 - JUnit
 
 To do
-testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.10.0'
+    testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.10.0'
+- further investigation on the stability of the project as the commitment of the creators of the tool towards supporting its adopters
 
 * JUnit @DataPoints
