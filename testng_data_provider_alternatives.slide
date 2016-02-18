@@ -94,7 +94,7 @@ To do
         private Integer[] vals;
         private Integer expected;
 
-        public UtilJUnitParameterizedTest(Integer[] vals, Integer expected) {
+        public UtilTest(Integer[] vals, Integer expected) {
             this.vals = vals;
             this.expected = expected;
         }
