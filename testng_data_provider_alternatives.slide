@@ -44,10 +44,11 @@ We'll use this for comparing testing frameworks
                     },
             };
         }
-        // code continues next slide
+    ...
 
 * TestNG @DataProvider / Overview #2
 
+    ...
         @Test(dataProvider = "shouldSumUp")
         public void shouldSumUp(Integer[] vals, Integer expected) {
             Assert.assertEquals(Util.sum(vals), (int) expected);
@@ -62,54 +63,59 @@ Pros
 - Can easily scale if every test sees its own data provider in isolation
 
 Cons
+- have to cope with (not a burden at all) JUnit and TestNG coexisting in the same project if the former is the status quo
 
 * JUnit parameterized testing / Overview #1
 
-@RunWith(value = Parameterized.class)
-public class UtilTest {
+    @RunWith(value = Parameterized.class)
+    public class UtilTest {
 
-    private Integer[] vals;
-    private Integer expected;
+        private Integer[] vals;
+        private Integer expected;
 
-    public UtilJUnitParameterizedTest(Integer[] vals, Integer expected) {
-        this.vals = vals;
-        this.expected = expected;
-    }
-    // code continues next slide
+        public UtilJUnitParameterizedTest(Integer[] vals, Integer expected) {
+            this.vals = vals;
+            this.expected = expected;
+        }
+    ...
 
 * JUnit parameterized testing / Overview #2
 
-    @Parameters
-    public static Iterable<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {
-                        new Integer[]{0, 0},
-                        0
-                },
-                {
-                        new Integer[]{1, 1},
-                        2
-                },
-                {
-                        new Integer[]{1, 2, 3, 4},
-                        10
-                },
-        });
-    }
-    // code continues next slide
+    ...
+        @Parameters
+        public static Iterable<Object[]> data() {
+            return Arrays.asList(new Object[][]{
+                    {
+                            new Integer[]{0, 0},
+                            0
+                    },
+                    {
+                            new Integer[]{1, 1},
+                            2
+                    },
+                    {
+                            new Integer[]{1, 2, 3, 4},
+                            10
+                    },
+            });
+        }
+    ...
 
 * JUnit parameterized testing / Overview #3
 
-    @Test
-    public void shouldSumUp() {
-        Assert.assertEquals(Util.sum(vals), (int) expected);
+    ...
+        @Test
+        public void shouldSumUp() {
+            Assert.assertEquals(Util.sum(vals), (int) expected);
+        }
     }
-}
 
-* JUnit parameterized testing / Evaluation
+* JUnit parameterized testing / Pros
 
-** Pros
-** Cons
+Not really, with respect to TestNG @DataProvider
+
+* JUnit parameterized testing / Cons
+
 Unnecessary boilerplate
 - Dependencies injected as class properties through a constructor
 - Unnecessary wrapper (iterator) around the data set. If the JUnit is iterating, why should the developer do the wrapping?
@@ -118,6 +124,11 @@ More important than above
 - Unable to specify multiple data containers in one class
 - The unit of a scenario can't be the method. It can only be a class
 - Significant increase in the number of test classes
+
+Even more important
+- parameterized testing is an implementation of JUnit test runners @RunWith(Parameterized.class)
+- only one runner can be used at a time (within the scope of a class)
+- impossible to run parameterized testing with, say, Spring Mock MVC @RunWith(SpringJUnit4ClassRunner.class)
 
 * JUnit @DataProvider plugin
 
