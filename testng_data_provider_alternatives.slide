@@ -214,4 +214,46 @@ To do
     testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.10.0'
 - further investigation on the stability of the project as the commitment of the creators of the tool towards supporting its adopters
 
-* JUnit @DataPoints
+* JUnit @DataPoints / Overview #1
+
+A niche within JUnit
+- tailored to assert mathematical expressions
+- no possible way to specify expected values
+
+* JUnit @DataPoints / Overview #2
+
+    @RunWith(Theories.class)
+    public class UtilJUnitTheoriesTest {
+
+        @DataPoint
+        public static int a = 10;
+
+        @DataPoint
+        public static int b = 20;
+
+        @DataPoints
+        public int[] moreDataPoints() {
+            return new int[] {1, 2, 100};
+        }
+    ...
+
+* JUnit @DataPoints / Overview #3
+
+    ...
+        /**
+         * Verify the correctness of the triangular inequality
+         */
+        @Theory
+        public void triangleInequality(int a, int b) {
+            Assert.assertTrue((a + b) > a);
+            Assert.assertTrue((a + b) > b);
+        }
+    }
+
+* JUnit @DataPoints / Evaluation
+
+Pros
+- takes care of combining all the data provided
+
+Cons
+- not very usefull for unit testing (testing chunck of code/method/layer in isolation)
