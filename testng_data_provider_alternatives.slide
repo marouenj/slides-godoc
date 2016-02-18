@@ -3,14 +3,15 @@ Marouen Jilani
 
 * Agenda
 
+- Logic to test
 - TestNG @DataProvider
 - JUnit parameterized tests
 - JUnit @DataProvider plugin
 - JUnit @DataPoints
 
-* TestNG @DataProvider / Overview #1
+* Logic to test
 
-Given this method
+We'll use this for comparing testing frameworks
 
     public class Util {
         public static int sum(Integer... vals) {
@@ -22,9 +23,7 @@ Given this method
         }
     }
 
-* TestNG @DataProvider / Overview #2
-
-Test it with @DataProvider
+* TestNG @DataProvider / Overview #1
 
     public class UtilTest {
 
@@ -47,13 +46,11 @@ Test it with @DataProvider
         }
         // code continues next slide
 
-* TestNG @DataProvider / Overview #3
+* TestNG @DataProvider / Overview #2
 
         @Test(dataProvider = "shouldSumUp")
         public void shouldSumUp(Integer[] vals, Integer expected) {
-            int s = sum(vals);
-
-            Assert.assertEquals(s, (int) expected);
+            Assert.assertEquals(Util.sum(vals), (int) expected);
         }
     }
 
