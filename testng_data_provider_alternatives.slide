@@ -65,6 +65,26 @@ Pros
 Cons
 - have to cope with (not a burden at all) JUnit and TestNG coexisting in the same project if the former is the status quo
 
+* TestNG @DataProvider / Integration
+
+Status quo
+- Gradle project
+- Junit
+
+To do
+    dependencies {
+        testCompile 'org.testng:testng:6.9.10'
+    }
+
+    task testNG (type: Test) {
+        useTestNG {}
+        reports.html.destination = file("$buildDir/reports/testsng")
+    }
+
+    test {
+        dependsOn testNG
+    }
+
 * JUnit parameterized testing / Overview #1
 
     @RunWith(value = Parameterized.class)
@@ -130,6 +150,25 @@ Even more important
 - only one runner can be used at a time (within the scope of a class)
 - impossible to run parameterized testing with, say, Spring Mock MVC @RunWith(SpringJUnit4ClassRunner.class)
 
-* JUnit @DataProvider plugin
+* JUnit parameterized testing / Integration
+
+Status quo
+- Gradle project
+- Junit
+
+To do
+- Nothing
+- Parameterized support are supported out of the box with JUnit
+
+* JUnit @DataProvider plugin / Overview #1
+
+* JUnit @DataProvider plugin / Integration
+
+Status quo
+- Gradle project
+- JUnit
+
+To do
+testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.10.0'
 
 * JUnit @DataPoints
