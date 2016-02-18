@@ -5,9 +5,9 @@ Marouen Jilani
 
 - Logic to test
 - TestNG @DataProvider
-- JUnit parameterized tests
-- JUnit @DataProvider plugin
-- JUnit @DataPoints
+- JUnit test runner 'Parameterized'
+- JUnit test runner 'DataProviderRunner'
+- JUnit test runner 'Theories'
 
 * Logic to test
 
@@ -85,7 +85,7 @@ To do
         dependsOn testNG
     }
 
-* JUnit parameterized testing / Overview #1
+* JUnit test runner 'Parameterized' / Overview #1
 
     @RunWith(value = Parameterized.class)
     public class UtilTest {
@@ -99,7 +99,7 @@ To do
         }
     ...
 
-* JUnit parameterized testing / Overview #2
+* JUnit test runner 'Parameterized' / Overview #2
 
     ...
         @Parameters
@@ -121,7 +121,7 @@ To do
         }
     ...
 
-* JUnit parameterized testing / Overview #3
+* JUnit test runner 'Parameterized' / Overview #3
 
     ...
         @Test
@@ -130,11 +130,11 @@ To do
         }
     }
 
-* JUnit parameterized testing / Pros
+* JUnit test runner 'Parameterized' / Pros
 
 Not really, with respect to TestNG @DataProvider
 
-* JUnit parameterized testing / Cons
+* JUnit test runner 'Parameterized' / Cons
 
 Unnecessary boilerplate
 - Dependencies injected as class properties through a constructor
@@ -150,7 +150,7 @@ Even more important
 - only one runner can be used at a time (within the scope of a class)
 - impossible to run parameterized testing with, say, Spring Mock MVC @RunWith(SpringJUnit4ClassRunner.class)
 
-* JUnit parameterized testing / Integration
+* JUnit test runner 'Parameterized' / Integration
 
 Status quo
 - Gradle project
@@ -160,7 +160,7 @@ To do
 - Nothing
 - Parameterized support are supported out of the box with JUnit
 
-* JUnit @DataProvider plugin / Overview #1
+* JUnit test runner 'DataProviderRunner' / Overview #1
 
     @RunWith(value = DataProviderRunner.class)
     public class UtilJUnitDataProviderTest {
@@ -184,7 +184,7 @@ To do
         }
     ...
 
-* JUnit @DataProvider plugin / Overview #2
+* JUnit test runner 'DataProviderRunner' / Overview #2
 
     ...
         @Test
@@ -194,7 +194,7 @@ To do
         }
     }
 
-* JUnit @DataProvider plugin / Evaluation
+* JUnit test runner 'DataProviderRunner' / Evaluation
 
 Pros
 - completely outweighs parameterized testing
@@ -204,7 +204,7 @@ Cons
 - use up the @RunWith annotation
 - unable to launch another test runner simultaneously (Spring Mock MVC with the @RunWith(SpringJUnit4ClassRunner.class))
 
-* JUnit @DataProvider plugin / Integration
+* JUnit test runner 'DataProviderRunner' / Integration
 
 Status quo
 - Gradle project
@@ -214,13 +214,13 @@ To do
     testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.10.0'
 - further investigation on the stability of the project as the commitment of the creators of the tool towards supporting its adopters
 
-* JUnit @DataPoints / Overview #1
+* JUnit test runner 'Theories' / Overview #1
 
 A niche within JUnit
 - tailored to assert mathematical expressions
 - no possible way to specify expected values
 
-* JUnit @DataPoints / Overview #2
+* JUnit test runner 'Theories' / Overview #2
 
     @RunWith(Theories.class)
     public class UtilJUnitTheoriesTest {
@@ -237,7 +237,7 @@ A niche within JUnit
         }
     ...
 
-* JUnit @DataPoints / Overview #3
+* JUnit test runner 'Theories' / Overview #3
 
     ...
         /**
@@ -250,7 +250,7 @@ A niche within JUnit
         }
     }
 
-* JUnit @DataPoints / Evaluation
+* JUnit test runner 'Theories' / Evaluation
 
 Pros
 - takes care of combining all the data provided
